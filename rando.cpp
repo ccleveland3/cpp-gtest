@@ -7,9 +7,7 @@
 **/
 bool Rando::shouldWorry(bool childASmile, bool childBSmile, bool childCSmile)
 {
-	if( childASmile && childBSmile && childCSmile )
-		return true;
-	else if( childASmile ^ childBSmile ^ childCSmile )
+	if( childASmile ^ childBSmile ^ childCSmile )
 		return true;
 	else
 		return false;
