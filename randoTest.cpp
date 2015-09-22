@@ -28,3 +28,25 @@ TEST(RandoTest, allChildrenSmile)
 	Rando rando;
 	ASSERT_TRUE( rando.shouldWorry(true,true,true) );
 }
+
+TEST(RandoTest, oneChildSmiles)
+{
+	Rando rando;
+	ASSERT_TRUE( rando.shouldWorry(true,false,false) );
+	ASSERT_TRUE( rando.shouldWorry(false,true,false) );
+	ASSERT_TRUE( rando.shouldWorry(false,false,true) );
+}
+  
+TEST(RandoTest, twoChildrenSmile)
+{
+	Rando rando;
+	ASSERT_FALSE( rando.shouldWorry(true,true,false) );
+	ASSERT_FALSE( rando.shouldWorry(true,false,true) );
+	ASSERT_FALSE( rando.shouldWorry(false,true,true) );
+}
+
+TEST(RandoTest, noChildrenSmile)
+{
+	Rando rando;
+	ASSERT_FALSE( rando.shouldWorry(false,false,false) );
+}
