@@ -106,3 +106,47 @@ TEST(RandoTest, isZeroDivisible)
 
 	ASSERT_FALSE( rando.isDivisibleBy(0,0) );
  }
+
+TEST(RandoTest, isPrime)
+{
+	Rando rando;
+	ASSERT_TRUE( rando.isPrime(1) );
+	ASSERT_TRUE( rando.isPrime(-1) );
+  
+	ASSERT_TRUE( rando.isPrime(2) );
+	ASSERT_TRUE( rando.isPrime(-2) );
+
+	ASSERT_TRUE( rando.isPrime(3) );
+	ASSERT_TRUE( rando.isPrime(-3) );
+
+	ASSERT_TRUE( rando.isPrime(5) );
+	ASSERT_TRUE( rando.isPrime(-5) );
+  
+  if (sizeof(int) == 4)
+  {
+	  ASSERT_TRUE( rando.isPrime((int)0x7FFFFFFF) );
+	  ASSERT_TRUE( rando.isPrime(-(int)0x7FFFFFFF) );
+  }
+}
+
+TEST(RandoTest, isNotPrime)
+{
+	Rando rando;
+	ASSERT_FALSE( rando.isPrime(4) );
+	ASSERT_FALSE( rando.isPrime(-4) );
+  
+	ASSERT_FALSE( rando.isPrime(9) );
+	ASSERT_FALSE( rando.isPrime(-9) );
+
+  if (sizeof(int) == 4)
+  {
+	  ASSERT_FALSE( rando.isPrime((int)0x7FFFFFFE) );
+	  ASSERT_FALSE( rando.isPrime((int)0x10000000) );
+  }
+}
+
+TEST(RandoTest, isZeroPrime)
+{
+	Rando rando;
+	ASSERT_FALSE( rando.isPrime(0) );
+}

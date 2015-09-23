@@ -1,3 +1,4 @@
+#include <math.h>
 #include "rando.h"
 //#include <stdlib.h>
 
@@ -34,6 +35,32 @@ bool Rando::isDivisibleBy(int first, int second)
 **/
 bool Rando::isPrime(int num)
 {
+  int i;
+  int squrtNum;
+
+  /* Absolute value */
+  num = (num < 0) ? -num : num;
+
+  if (num == 0)
+    return false;
+
+  /* Handling evens here so that the for loop below can be reduced to dividing
+   * by only odds since all evens are divisible by 2.
+   */
+  else if (num == 2)
+    return true;
+  else if (num % 2 == 0)
+    return false;
+
+  /* If num is a prime, it will be evenly divided by a number between 2 and
+   * squrt(num) and we only need to find one instance.  "i" is incremented by 2
+   * because all evens were taken care of above.
+   */
+  squrtNum = sqrt(num);
+  for (i = 3; (i <= squrtNum); i = i + 2)
+    if(num % i == 0)
+      return false;
+
 	return true;
 }
 
