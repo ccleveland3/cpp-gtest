@@ -1,18 +1,10 @@
 /**
  * Unit Tests for Rando Test
+ * Author: Christian Cleveland
 **/
 
 #include <gtest/gtest.h>
 #include "rando.h"
-
-/*  
-	FUNCTIONS WE NEED TO TEST:
-
-	bool shouldWorry(bool,bool,bool);
-	bool isDivisbleBy(int,int);
-	bool isPrime(int);
-	int nearestToZero(int,int);
-*/
  
 class RandoTest : public ::testing::Test
 {

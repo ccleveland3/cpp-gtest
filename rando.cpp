@@ -1,7 +1,10 @@
+/**
+ * Rando Class Definition
+ * Author: Christian Cleveland
+**/
+
 #include <math.h>
 #include "rando.h"
-//#include <stdlib.h>
-
 
 /**
  * Worry if only one child is smiling or if all children are smiling
