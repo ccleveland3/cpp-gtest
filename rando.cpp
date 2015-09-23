@@ -11,10 +11,7 @@
 **/
 bool Rando::shouldWorry(bool childASmile, bool childBSmile, bool childCSmile)
 {
-	if( childASmile ^ childBSmile ^ childCSmile )
-		return true;
-	else
-		return false;
+	return (childASmile ^ childBSmile ^ childCSmile);
 }
 /**
  * Determines if first or second are evenly divisible by the other.
