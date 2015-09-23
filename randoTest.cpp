@@ -50,3 +50,59 @@ TEST(RandoTest, noChildrenSmile)
 	Rando rando;
 	ASSERT_FALSE( rando.shouldWorry(false,false,false) );
 }
+
+TEST(RandoTest, isDivisible)
+{
+	Rando rando;
+	ASSERT_TRUE( rando.isDivisibleBy(1,2) );
+	ASSERT_TRUE( rando.isDivisibleBy(2,2) );
+	ASSERT_TRUE( rando.isDivisibleBy(2,1) );
+	ASSERT_TRUE( rando.isDivisibleBy(262144,512) );
+	ASSERT_TRUE( rando.isDivisibleBy(262144,262144) );
+	ASSERT_TRUE( rando.isDivisibleBy(512,262144) );
+
+	ASSERT_TRUE( rando.isDivisibleBy(-1,2) );
+	ASSERT_TRUE( rando.isDivisibleBy(-2,2) );
+	ASSERT_TRUE( rando.isDivisibleBy(-2,1) );
+	ASSERT_TRUE( rando.isDivisibleBy(-262144,512) );
+	ASSERT_TRUE( rando.isDivisibleBy(-262144,262144) );
+	ASSERT_TRUE( rando.isDivisibleBy(-512,262144) );
+
+	ASSERT_TRUE( rando.isDivisibleBy(1,-2) );
+	ASSERT_TRUE( rando.isDivisibleBy(2,-2) );
+	ASSERT_TRUE( rando.isDivisibleBy(2,-1) );
+	ASSERT_TRUE( rando.isDivisibleBy(262144,-512) );
+	ASSERT_TRUE( rando.isDivisibleBy(262144,-262144) );
+	ASSERT_TRUE( rando.isDivisibleBy(512,-262144) );
+}
+
+TEST(RandoTest, isNotDivisible)
+{
+	Rando rando;
+	ASSERT_FALSE( rando.isDivisibleBy(3,2) );
+	ASSERT_FALSE( rando.isDivisibleBy(2,3) );
+	ASSERT_FALSE( rando.isDivisibleBy(262145,512) );
+	ASSERT_FALSE( rando.isDivisibleBy(512,262145) );
+
+	ASSERT_FALSE( rando.isDivisibleBy(-3,2) );
+	ASSERT_FALSE( rando.isDivisibleBy(-2,3) );
+	ASSERT_FALSE( rando.isDivisibleBy(-262145,512) );
+	ASSERT_FALSE( rando.isDivisibleBy(-512,262145) );
+
+	ASSERT_FALSE( rando.isDivisibleBy(3,-2) );
+	ASSERT_FALSE( rando.isDivisibleBy(2,-3) );
+	ASSERT_FALSE( rando.isDivisibleBy(262145,-512) );
+	ASSERT_FALSE( rando.isDivisibleBy(512,-262145) );
+}
+
+TEST(RandoTest, isZeroDivisible)
+{
+	Rando rando;
+	ASSERT_TRUE( rando.isDivisibleBy(1,0) );
+	ASSERT_TRUE( rando.isDivisibleBy(0,1) );
+
+	ASSERT_TRUE( rando.isDivisibleBy(-1,0) );
+	ASSERT_TRUE( rando.isDivisibleBy(0,-1) );
+
+	ASSERT_FALSE( rando.isDivisibleBy(0,0) );
+ }
