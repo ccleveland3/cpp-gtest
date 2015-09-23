@@ -150,3 +150,52 @@ TEST(RandoTest, isZeroPrime)
 	Rando rando;
 	ASSERT_FALSE( rando.isPrime(0) );
 }
+
+TEST(RandoTest, isNearestToZero)
+{
+	Rando rando;
+	ASSERT_EQ( rando.nearestToZero(1,2), 1 );
+	ASSERT_EQ( rando.nearestToZero(1,-2), 1 );
+	ASSERT_EQ( rando.nearestToZero(-1,2), -1 );
+	ASSERT_EQ( rando.nearestToZero(-1,-2), -1 );
+
+	ASSERT_EQ( rando.nearestToZero(2,1), 1 );
+	ASSERT_EQ( rando.nearestToZero(2,-1), -1 );
+	ASSERT_EQ( rando.nearestToZero(-2,1), 1 );
+	ASSERT_EQ( rando.nearestToZero(-2,-1), -1 );
+
+	ASSERT_EQ( rando.nearestToZero(1,1), 1 );
+	ASSERT_EQ( rando.nearestToZero(-1,-1), -1 );
+
+  int retval = rando.nearestToZero(-1,1);
+  ASSERT_TRUE( (retval == 1 || retval == -1) );
+
+	ASSERT_EQ( rando.nearestToZero(100,200), 100 );
+	ASSERT_EQ( rando.nearestToZero(100,-200), 100 );
+	ASSERT_EQ( rando.nearestToZero(-100,200), -100 );
+	ASSERT_EQ( rando.nearestToZero(-100,-200), -100 );
+
+  if (sizeof(int) == 4)
+  {
+    retval = rando.nearestToZero((int)0x7FFFFFFF, (int)0x10000000);
+    ASSERT_EQ(retval, (int)0x10000000);
+    
+    retval = rando.nearestToZero((int)0x7FFFFFFF, (int)0x7FFFFFFF);
+    ASSERT_EQ(retval, (int)0x7FFFFFFF);
+
+    retval = rando.nearestToZero((int)0x10000000, (int)0x10000000);
+    ASSERT_EQ(retval, (int)0x10000000);
+  }
+}
+
+TEST(RandoTest, isZeroNearestToZero)
+{
+	Rando rando;
+	ASSERT_EQ( rando.nearestToZero(0,1), 1);
+	ASSERT_EQ( rando.nearestToZero(1,0), 1);
+
+	ASSERT_EQ( rando.nearestToZero(0,-1), -1);
+	ASSERT_EQ( rando.nearestToZero(-1,0), -1);
+  
+	ASSERT_EQ( rando.nearestToZero(0,0), 0);
+}
